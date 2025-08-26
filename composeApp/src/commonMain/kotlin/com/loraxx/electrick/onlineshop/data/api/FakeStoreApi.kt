@@ -8,7 +8,12 @@ import io.ktor.client.request.get
 const val BASE_URL = "https://fakestoreapi.com"
 
 class FakeStoreApi(val httpClient: HttpClient) {
+
     suspend fun getProducts(): List<ProductDto> {
         return httpClient.get("$BASE_URL/products").body()
+    }
+
+    suspend fun getProductDetails(id: Int): ProductDto {
+        return httpClient.get("$BASE_URL/products/$id").body()
     }
 }

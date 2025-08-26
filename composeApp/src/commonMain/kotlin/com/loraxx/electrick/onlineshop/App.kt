@@ -1,21 +1,24 @@
 package com.loraxx.electrick.onlineshop
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.request.crossfade
-import coil3.util.DebugLogger
+import com.loraxx.electrick.onlineshop.navigation.Route
+import com.loraxx.electrick.onlineshop.ui.productdetails.ProductDetailsScreen
+import com.loraxx.electrick.onlineshop.ui.productdetails.ProductDetailsViewModel
 import com.loraxx.electrick.onlineshop.ui.productlist.ProductListScreen
 import com.loraxx.electrick.onlineshop.ui.theme.OnlineShopTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 @Preview
@@ -25,18 +28,36 @@ fun App() {
             .crossfade(true)
             .build()
     }
-
     OnlineShopTheme {
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.surface)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            ProductListScreen { productId ->
-                //TODO navigate to product details screen
+        OnlineShopApp()
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OnlineShopApp() {
+    val navController = rememberNavController()
+    val scrollBehavior =
+        TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+
+    NavHost(
+        navController = navController,
+        startDestination = Route.ProductList,
+    ) {
+        composable<Route.ProductList> {
+            ProductListScreen(
+                scrollBehavior = scrollBehavior,
+                onProductClick = { id ->
+                    navController.navigate(Route.ProductDetails(id))
+                }
+            )
+        }
+        composable<Route.ProductDetails> { backStackEntry ->
+            val productId = backStackEntry.toRoute<Route.ProductDetails>().id
+            val productDetailsViewModel: ProductDetailsViewModel = koinViewModel {
+                parametersOf(productId)
             }
+            ProductDetailsScreen(viewModel = productDetailsViewModel, navController = navController)
         }
     }
 }

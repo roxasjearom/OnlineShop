@@ -15,4 +15,8 @@ class ProductRepositoryImpl(val fakeStoreApi: FakeStoreApi) : ProductRepository 
             emptyList()
         }
     }
+
+    override suspend fun getProductDetails(id: Int): Product {
+        return fakeStoreApi.getProductDetails(id).toProduct()
+    }
 }
