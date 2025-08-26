@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Online Shop</string>
+    <string name="product_not_found">Product not found</string>
+    <string name="header_product_details">Product Details</string>
+    <string name="cd_share_product">Share product</string>
+    <string name="cd_favorite">Favorite</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="buy_now">Buy now</string>
+</resources>

@@ -39,7 +39,15 @@ import coil3.compose.AsyncImage
 import com.loraxx.electrick.onlineshop.domain.model.Product
 import com.loraxx.electrick.onlineshop.domain.model.Rating
 import com.loraxx.electrick.onlineshop.ui.theme.OnlineShopTheme
+import onlineshop.composeapp.generated.resources.Res
+import onlineshop.composeapp.generated.resources.add_to_cart
+import onlineshop.composeapp.generated.resources.buy_now
+import onlineshop.composeapp.generated.resources.cd_favorite
+import onlineshop.composeapp.generated.resources.cd_share_product
+import onlineshop.composeapp.generated.resources.header_product_details
+import onlineshop.composeapp.generated.resources.product_not_found
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -92,7 +100,7 @@ fun ProductNotFound() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = "Product not found")
+        Text(text = stringResource(Res.string.product_not_found))
     }
 }
 
@@ -111,8 +119,7 @@ fun ProductDetailsScreen(
             AsyncImage(
                 model = product.image,
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth()
-                    .height(352.dp),
+                modifier = Modifier.fillMaxWidth().height(352.dp),
                 contentScale = ContentScale.Fit,
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -147,7 +154,7 @@ fun ProductDetailsScreen(
 fun ProductDetailsSection(modifier: Modifier = Modifier, details: String) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = "Product Details",
+            text = stringResource(Res.string.header_product_details),
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
@@ -185,14 +192,14 @@ fun PriceActionsRow(
         IconButton(onClick = onShareClick) {
             Icon(
                 imageVector = Icons.Filled.Share,
-                contentDescription = "Share"
+                contentDescription = stringResource(Res.string.cd_share_product),
             )
         }
 
         IconButton(onClick = onFavoriteClick) {
             Icon(
                 imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                contentDescription = "Favorite",
+                contentDescription = stringResource(Res.string.cd_favorite),
             )
         }
     }
@@ -215,14 +222,14 @@ fun ActionButtonsRow(
             onClick = onAddToCartClick,
             modifier = Modifier.weight(1f),
         ) {
-            Text("Add to cart")
+            Text(stringResource(Res.string.add_to_cart))
         }
 
         Button(
             onClick = onBuyNowClick,
             modifier = Modifier.weight(1f),
         ) {
-            Text("Buy now")
+            Text(stringResource(Res.string.buy_now))
         }
     }
 }

@@ -8,6 +8,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import onlineshop.composeapp.generated.resources.Res
+import onlineshop.composeapp.generated.resources.app_name
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -16,7 +19,7 @@ fun ProductListAppBar(
     scrollBehavior: TopAppBarScrollBehavior?,
 ) {
     TopAppBar(
-        title = { Text("Online Shop") },
+        title = { Text(stringResource(Res.string.app_name)) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
