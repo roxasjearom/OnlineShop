@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -67,6 +69,14 @@ fun ProductDetailsScreen(
                 onNavigateUp = { navController.navigateUp() },
                 onCartClick = {},
             )
+        },
+        bottomBar = {
+            ActionButtonsRow(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                onAddToCartClick = { /*trigger add to cart action*/ },
+                onBuyNowClick = { /*trigger buy now action*/ },
+            )
         }
     ) { innerPadding ->
         if (uiState.isLoading) {
@@ -80,12 +90,9 @@ fun ProductDetailsScreen(
             if (product != null) {
                 ProductDetailsScreen(
                     modifier = modifier
-                        .padding(innerPadding)
-                        .padding(horizontal = 16.dp),
+                        .padding(innerPadding),
                     product = product,
                     onShareClick = { /*trigger share action*/ },
-                    onAddToCartClick = { /*trigger add to cart action*/ },
-                    onBuyNowClick = { /*trigger buy now action*/ },
                 )
             } else {
                 ProductNotFound()
@@ -109,13 +116,13 @@ fun ProductDetailsScreen(
     modifier: Modifier = Modifier,
     product: Product,
     onShareClick: () -> Unit,
-    onAddToCartClick: () -> Unit,
-    onBuyNowClick: () -> Unit,
 ) {
     var isFavorite by remember { mutableStateOf(false) } //internal state for favorite status
 
     Box(modifier = modifier.fillMaxSize()) {
-        Column {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
+        ) {
             AsyncImage(
                 model = product.image,
                 contentDescription = null,
@@ -140,13 +147,6 @@ fun ProductDetailsScreen(
             Spacer(modifier = Modifier.height(16.dp))
             ProductDetailsSection(details = product.description)
         }
-        ActionButtonsRow(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth(),
-            onAddToCartClick = onAddToCartClick,
-            onBuyNowClick = onBuyNowClick,
-        )
     }
 }
 
@@ -212,24 +212,27 @@ fun ActionButtonsRow(
     onAddToCartClick: () -> Unit,
     onBuyNowClick: () -> Unit,
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        shadowElevation = 8.dp,
     ) {
-        OutlinedButton(
-            onClick = onAddToCartClick,
-            modifier = Modifier.weight(1f),
+        Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(stringResource(Res.string.add_to_cart))
-        }
+            OutlinedButton(
+                onClick = onAddToCartClick,
+                modifier = Modifier.weight(1f),
+            ) {
+                Text(stringResource(Res.string.add_to_cart))
+            }
 
-        Button(
-            onClick = onBuyNowClick,
-            modifier = Modifier.weight(1f),
-        ) {
-            Text(stringResource(Res.string.buy_now))
+            Button(
+                onClick = onBuyNowClick,
+                modifier = Modifier.weight(1f),
+            ) {
+                Text(stringResource(Res.string.buy_now))
+            }
         }
     }
 }
@@ -253,8 +256,6 @@ fun ProductDetailsScreenPreview() {
                     )
                 ),
                 onShareClick = {},
-                onAddToCartClick = {},
-                onBuyNowClick = {},
             )
         }
     }
