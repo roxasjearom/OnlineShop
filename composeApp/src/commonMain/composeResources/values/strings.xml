@@ -6,4 +6,6 @@
     <string name="cd_favorite">Favorite</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="buy_now">Buy now</string>
+    <string name="rating_count">Ratings (%1$s)</string>
+    <string name="rating_display">%1$s/5</string>
 </resources>
