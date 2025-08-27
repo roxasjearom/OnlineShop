@@ -1,16 +1,14 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Project Overview: Online Shop
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Online Shop is a demo project that is built upon Compose Multiplatform. This project uses the recommended tech stacks for multiplatform development.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+# Screenshots
 
+<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/2e216614-6dc3-4c4d-9387-2a4442ea15f6" /><img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/593dfe87-89a9-48f1-ac89-ee8a7c9742d3" />
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+# Tech stack
+* UI Framework: Compose Mutiplatform
+* Dependency Injection: Koin
+* Network - Ktor
+* Image loading - Coil
+* Navigation - Jetpack Navigation library
