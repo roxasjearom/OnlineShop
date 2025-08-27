@@ -1,10 +1,13 @@
 # Project Overview: Online Shop
 
 Online Shop is a demo project that is built upon Compose Multiplatform. This project uses the recommended tech stacks for multiplatform development.
+The data is being fetched from [Fake Store API](https://fakestoreapi.com/).
 
 # Screenshots
 
-<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/2e216614-6dc3-4c4d-9387-2a4442ea15f6" /><img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/593dfe87-89a9-48f1-ac89-ee8a7c9742d3" />
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/9ef4ce67-1c80-4af2-b03a-cdb3dc538c47" /> <img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/f51cc2a0-4c89-439e-b25f-eb881c96884b" />
+
+
 
 # Tech stack
 * UI Framework: Compose Mutiplatform
