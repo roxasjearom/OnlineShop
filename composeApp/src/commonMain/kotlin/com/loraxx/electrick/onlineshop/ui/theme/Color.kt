@@ -1,7 +1,7 @@
 package com.loraxx.electrick.onlineshop.ui.theme
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF6F5D0E)
+val primaryLight = Color(0xFF000000)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFFAE287)
 val onPrimaryContainerLight = Color(0xFF544600)

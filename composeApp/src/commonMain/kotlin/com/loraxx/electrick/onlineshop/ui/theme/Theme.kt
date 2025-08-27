@@ -1,5 +1,6 @@
 package com.loraxx.electrick.onlineshop.ui.theme
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
@@ -41,11 +42,12 @@ private val lightScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLight,
 )
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun OnlineShopTheme(
     content: @Composable() () -> Unit
 ) {
-  MaterialTheme(
+    MaterialExpressiveTheme(
     colorScheme = lightScheme,
     typography = AppTypography,
     content = content
