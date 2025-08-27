@@ -36,6 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.loraxx.electrick.onlineshop.domain.model.Product
 import com.loraxx.electrick.onlineshop.domain.model.Rating
+import com.loraxx.electrick.onlineshop.util.formatToUsd
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -140,7 +141,7 @@ fun ProductCard(
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = product.price.toString(),
+            text = product.price.formatToUsd(),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
         )
